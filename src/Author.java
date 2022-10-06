@@ -1,21 +1,45 @@
+import java.util.Objects;
+
 public class Author {
-    private final String authorFirstName;
-    private final String authorLastName;
+    private final String firstName;
+    private final String lastName;
 
-    public Author(String authorFirstName, String authorLastName) {
-        this.authorFirstName = authorFirstName;
-        this.authorLastName = authorLastName;
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getAuthorFirstName() {
-        return authorFirstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getAuthorLastName() {
-        return authorLastName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getAuthorFullName() {
-        return authorFirstName + " " + authorLastName;
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return firstName.equals(author.firstName) && lastName.equals(author.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
+    }
+
+    public void compareAndDisplay(Author a) {
+        if (this.equals(a)) {
+            System.out.printf("This is the same author - %s.%n", this);
+        } else {
+            System.out.printf("These are different authors - %s and %s.%n", this, a);
+        }
     }
 }
